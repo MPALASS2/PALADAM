@@ -7,15 +7,15 @@
   <meta name="description" content="Diseñamos y acompañamos formaciones en proyectos gamificados para docentes de todas las etapas educativas." />
   <style>
     :root {
-      --bg: #0b1020;
-      --bg-soft: #121a33;
-      --card: #161f3e;
-      --text: #e8ecff;
-      --muted: #b6c0ee;
-      --brand: #7c8cff;
-      --brand-2: #4ee3b3;
-      --accent: #ffd166;
-      --shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+      --bg: #f3f6ff;
+      --bg-soft: #e7ecfb;
+      --card: #ffffff;
+      --text: #1d2a4d;
+      --muted: #5f6f94;
+      --brand: #4a63d9;
+      --brand-2: #00a78d;
+      --accent: #ffb547;
+      --shadow: 0 14px 30px rgba(28, 54, 110, 0.12);
       --radius: 18px;
     }
 
@@ -26,9 +26,9 @@
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 10% 10%, #1e2a58 0%, transparent 38%),
-        radial-gradient(circle at 85% 18%, #1f6f73 0%, transparent 36%),
-        linear-gradient(180deg, var(--bg), #070a15 65%);
+        radial-gradient(circle at 10% 10%, #d8e4ff 0%, transparent 45%),
+        radial-gradient(circle at 85% 18%, #d6f4ef 0%, transparent 35%),
+        linear-gradient(180deg, var(--bg), #edf2ff 70%);
       min-height: 100vh;
       line-height: 1.5;
     }
@@ -43,9 +43,9 @@
       position: sticky;
       top: 0;
       backdrop-filter: blur(8px);
-      background: rgba(11, 16, 32, 0.55);
+      background: rgba(243, 246, 255, 0.85);
       z-index: 10;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(48, 74, 138, 0.12);
     }
 
     nav {
@@ -59,7 +59,7 @@
       font-weight: 800;
       font-size: 1.15rem;
       letter-spacing: .4px;
-      color: #fff;
+      color: #11224f;
     }
 
     .logo span { color: var(--brand-2); }
@@ -75,6 +75,8 @@
       text-decoration: none;
       font-size: .95rem;
     }
+
+    .nav-links a:hover { color: var(--brand); }
 
     .hero {
       padding: 90px 0 54px;
@@ -99,11 +101,39 @@
     }
 
     .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(180deg, #ffffff, #f8faff);
+      border: 1px solid rgba(66, 96, 168, 0.16);
       border-radius: var(--radius);
       padding: 24px;
       box-shadow: var(--shadow);
+    }
+
+    .hero-search {
+      margin-top: 20px;
+      background: #fff;
+      border: 1px solid rgba(66, 96, 168, 0.2);
+      border-radius: 14px;
+      display: grid;
+      grid-template-columns: 1.2fr .9fr .9fr auto;
+      gap: 10px;
+      padding: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-search input,
+    .hero-search select {
+      border: 1px solid rgba(75, 102, 174, 0.2);
+      border-radius: 10px;
+      padding: 11px 12px;
+      font: inherit;
+      color: var(--text);
+      background: #f9fbff;
+      min-width: 0;
+    }
+
+    .hero-search .btn {
+      border-radius: 10px;
+      padding-inline: 16px;
     }
 
     .hero-card p {
@@ -116,9 +146,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(124,140,255,0.15);
-      border: 1px solid rgba(124,140,255,0.35);
-      color: #d8deff;
+      background: rgba(74,99,217,0.12);
+      border: 1px solid rgba(74,99,217,0.3);
+      color: #2b437f;
       border-radius: 999px;
       padding: 7px 12px;
       margin: 0 8px 8px 0;
@@ -151,9 +181,15 @@
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.9);
       color: var(--text);
-      border: 1px solid rgba(255,255,255,0.16);
+      border: 1px solid rgba(66, 96, 168, 0.25);
+    }
+
+    .btn-auth {
+      background: linear-gradient(120deg, #0ea58e, #24c2a8);
+      color: #fff;
+      white-space: nowrap;
     }
 
     section { padding: 24px 0 18px; }
@@ -172,11 +208,23 @@
     }
 
     .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(180deg, #ffffff, #f8faff);
+      border: 1px solid rgba(66, 96, 168, 0.16);
       border-radius: 16px;
-      padding: 18px;
+      padding: 0;
+      overflow: hidden;
       box-shadow: var(--shadow);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      padding: 16px 18px 18px;
     }
 
     .card h3 { margin: 0 0 8px; font-size: 1.06rem; }
@@ -193,7 +241,7 @@
       padding: 20px;
       border-radius: 16px;
       background: var(--card);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(66, 96, 168, 0.16);
     }
 
     .price-card.featured {
@@ -216,7 +264,7 @@
     .contact {
       margin: 28px 0 44px;
       background: linear-gradient(130deg, rgba(124,140,255,.18), rgba(78,227,179,.1));
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(66, 96, 168, 0.18);
       border-radius: var(--radius);
       padding: 24px;
       display: grid;
@@ -226,10 +274,26 @@
     }
 
     footer {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: #9aa7df;
+      border-top: 1px solid rgba(66, 96, 168, 0.12);
+      color: #6b7daa;
       padding: 18px 0 28px;
       font-size: .92rem;
+    }
+
+    .auth-section {
+      margin: 28px 0;
+      background: #fff;
+      border: 1px solid rgba(66, 96, 168, 0.16);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .auth-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 14px;
     }
 
     @media (max-width: 920px) {
@@ -239,6 +303,8 @@
       .contact {
         grid-template-columns: 1fr;
       }
+
+      .hero-search { grid-template-columns: 1fr; }
 
       .hero { padding-top: 56px; }
       .contact { text-align: left; }
@@ -254,8 +320,10 @@
           <a href="#programas">Programas</a>
           <a href="#metodo">Método</a>
           <a href="#precios">Precios</a>
+          <a href="#acceso">Acceso</a>
           <a href="#contacto">Contacto</a>
         </div>
+        <a class="btn btn-auth" href="#acceso">Iniciar sesión / Registro</a>
       </nav>
     </div>
   </header>
@@ -265,6 +333,22 @@
       <div>
         <h1>Formaciones en <span style="color: var(--brand-2)">proyectos gamificados</span> para docentes que quieren transformar su aula.</h1>
         <p class="lead">Ayudamos a claustros, coordinadores y profesorado a diseñar experiencias educativas motivadoras, medibles y alineadas con el currículo mediante narrativa, retos y evaluación competencial.</p>
+        <form class="hero-search" role="search" aria-label="Buscador de formaciones">
+          <input type="search" placeholder="¿Qué formación necesitas?" aria-label="Buscar formación" />
+          <select aria-label="Modalidad">
+            <option value="">Modalidad</option>
+            <option>Online</option>
+            <option>Presencial</option>
+            <option>Mixta</option>
+          </select>
+          <select aria-label="Nivel">
+            <option value="">Nivel</option>
+            <option>Inicial</option>
+            <option>Intermedio</option>
+            <option>Avanzado</option>
+          </select>
+          <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
         <div class="cta-wrap">
           <a class="btn btn-primary" href="#contacto">Solicitar propuesta</a>
           <a class="btn btn-secondary" href="#precios">Ver programas</a>
@@ -285,17 +369,35 @@
       <p class="section-intro">Elige la modalidad que mejor encaje con tu etapa educativa, tiempo disponible y nivel de experiencia en gamificación.</p>
       <div class="grid">
         <article class="card">
-          <h3>Iniciación a la gamificación</h3>
-          <p>Para equipos que empiezan desde cero: fundamentos, mecánicas, dinámicas y prototipo de proyecto aplicable al aula.</p>
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=80" alt="Docentes en una sesión de formación inicial" loading="lazy" />
+          <div class="card-content">
+            <h3>Iniciación a la gamificación</h3>
+            <p>Para equipos que empiezan desde cero: fundamentos, mecánicas, dinámicas y prototipo de proyecto aplicable al aula.</p>
+          </div>
         </article>
         <article class="card">
-          <h3>Diseño de proyecto completo</h3>
-          <p>Creación guiada de una secuencia gamificada trimestral con narrativa, misiones, insignias y rúbricas.</p>
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80" alt="Equipo docente diseñando un proyecto educativo" loading="lazy" />
+          <div class="card-content">
+            <h3>Diseño de proyecto completo</h3>
+            <p>Creación guiada de una secuencia gamificada trimestral con narrativa, misiones, insignias y rúbricas.</p>
+          </div>
         </article>
         <article class="card">
-          <h3>Mentoría para centros</h3>
-          <p>Acompañamiento durante la implantación para ajustar estrategias, resolver bloqueos y medir impacto.</p>
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80" alt="Mentoría y acompañamiento entre docentes" loading="lazy" />
+          <div class="card-content">
+            <h3>Mentoría para centros</h3>
+            <p>Acompañamiento durante la implantación para ajustar estrategias, resolver bloqueos y medir impacto.</p>
+          </div>
         </article>
+      </div>
+    </section>
+
+    <section id="acceso" class="auth-section">
+      <h2>Acceso de usuarios</h2>
+      <p class="section-intro" style="margin-bottom: 0;">Gestiona tu itinerario formativo, guarda cursos favoritos y consulta tus avances.</p>
+      <div class="auth-actions">
+        <a class="btn btn-primary" href="#">Iniciar sesión</a>
+        <a class="btn btn-secondary" href="#">Crear cuenta</a>
       </div>
     </section>
 
