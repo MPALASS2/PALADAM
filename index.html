@@ -7,19 +7,21 @@
   <meta name="description" content="Diseñamos y acompañamos formaciones en proyectos gamificados para docentes de todas las etapas educativas." />
   <style>
     :root {
-      --bg: #f3f6ff;
-      --bg-soft: #e7ecfb;
+      --bg: #f1f5ff;
+      --bg-soft: #e6edff;
       --card: #ffffff;
-      --text: #1d2a4d;
-      --muted: #5f6f94;
-      --brand: #4a63d9;
-      --brand-2: #00a78d;
+      --text: #17264d;
+      --muted: #4f6086;
+      --brand: #3f57d0;
+      --brand-2: #008f7c;
       --accent: #ffb547;
       --shadow: 0 14px 30px rgba(28, 54, 110, 0.12);
       --radius: 18px;
     }
 
     * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -30,7 +32,8 @@
         radial-gradient(circle at 85% 18%, #d6f4ef 0%, transparent 35%),
         linear-gradient(180deg, var(--bg), #edf2ff 70%);
       min-height: 100vh;
-      line-height: 1.5;
+      line-height: 1.6;
+      font-size: 17px;
     }
 
     .container {
@@ -39,13 +42,13 @@
     }
 
     header {
-      padding: 24px 0;
+      padding: 20px 0;
       position: sticky;
       top: 0;
       backdrop-filter: blur(8px);
-      background: rgba(243, 246, 255, 0.85);
+      background: rgba(243, 246, 255, 0.9);
       z-index: 10;
-      border-bottom: 1px solid rgba(48, 74, 138, 0.12);
+      border-bottom: 1px solid rgba(48, 74, 138, 0.14);
     }
 
     nav {
@@ -57,7 +60,7 @@
 
     .logo {
       font-weight: 800;
-      font-size: 1.15rem;
+      font-size: 1.18rem;
       letter-spacing: .4px;
       color: #11224f;
     }
@@ -74,21 +77,39 @@
       color: var(--muted);
       text-decoration: none;
       font-size: .95rem;
+      font-weight: 600;
     }
 
-    .nav-links a:hover { color: var(--brand); }
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--brand); }
 
     .hero {
-      padding: 90px 0 54px;
+      padding: 88px 0 46px;
       display: grid;
       grid-template-columns: 1.2fr .8fr;
       gap: 32px;
       align-items: center;
     }
 
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(63, 87, 208, 0.35);
+      background: rgba(63, 87, 208, 0.1);
+      color: #2c418d;
+      font-size: .86rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
     h1 {
       margin: 0 0 18px;
-      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-size: clamp(2rem, 5vw, 3.45rem);
       line-height: 1.08;
       letter-spacing: .3px;
     }
@@ -96,8 +117,8 @@
     .lead {
       margin: 0;
       color: var(--muted);
-      font-size: 1.08rem;
-      max-width: 62ch;
+      font-size: 1.13rem;
+      max-width: 60ch;
     }
 
     .hero-card {
@@ -106,12 +127,18 @@
       border-radius: var(--radius);
       padding: 24px;
       box-shadow: var(--shadow);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .hero-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px rgba(28, 54, 110, 0.18);
     }
 
     .hero-search {
       margin-top: 20px;
       background: #fff;
-      border: 1px solid rgba(66, 96, 168, 0.2);
+      border: 1px solid rgba(66, 96, 168, 0.25);
       border-radius: 14px;
       display: grid;
       grid-template-columns: 1.2fr .9fr .9fr auto;
@@ -122,7 +149,7 @@
 
     .hero-search input,
     .hero-search select {
-      border: 1px solid rgba(75, 102, 174, 0.2);
+      border: 1px solid rgba(75, 102, 174, 0.35);
       border-radius: 10px;
       padding: 11px 12px;
       font: inherit;
@@ -147,18 +174,21 @@
       align-items: center;
       gap: 8px;
       background: rgba(74,99,217,0.12);
-      border: 1px solid rgba(74,99,217,0.3);
-      color: #2b437f;
+      border: 1px solid rgba(74,99,217,0.35);
+      color: #21396f;
       border-radius: 999px;
       padding: 7px 12px;
       margin: 0 8px 8px 0;
       font-size: .86rem;
+      transition: transform .2s ease;
     }
+
+    .pill:hover { transform: translateY(-1px); }
 
     .cta-wrap {
       display: flex;
       gap: 12px;
-      margin-top: 26px;
+      margin-top: 24px;
       flex-wrap: wrap;
     }
 
@@ -166,14 +196,18 @@
       border: 0;
       border-radius: 12px;
       padding: 12px 18px;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
       display: inline-block;
-      transition: transform .18s ease;
+      transition: transform .18s ease, box-shadow .2s ease;
       cursor: pointer;
     }
 
-    .btn:hover { transform: translateY(-1px); }
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 14px rgba(28, 54, 110, 0.16);
+    }
 
     .btn-primary {
       background: linear-gradient(120deg, var(--brand), #98a4ff);
@@ -181,13 +215,13 @@
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       color: var(--text);
-      border: 1px solid rgba(66, 96, 168, 0.25);
+      border: 1px solid rgba(66, 96, 168, 0.35);
     }
 
     .btn-auth {
-      background: linear-gradient(120deg, #0ea58e, #24c2a8);
+      background: linear-gradient(120deg, #0a9a86, #1fb69f);
       color: #fff;
       white-space: nowrap;
     }
@@ -196,10 +230,15 @@
 
     h2 {
       margin: 0 0 10px;
-      font-size: clamp(1.45rem, 3.4vw, 2rem);
+      font-size: clamp(1.55rem, 3.4vw, 2.1rem);
+      line-height: 1.2;
     }
 
-    .section-intro { color: var(--muted); margin-bottom: 22px; }
+    .section-intro {
+      color: var(--muted);
+      margin-bottom: 22px;
+      max-width: 68ch;
+    }
 
     .grid {
       display: grid;
@@ -214,6 +253,12 @@
       padding: 0;
       overflow: hidden;
       box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(28, 54, 110, 0.16);
     }
 
     .card img {
@@ -227,8 +272,68 @@
       padding: 16px 18px 18px;
     }
 
-    .card h3 { margin: 0 0 8px; font-size: 1.06rem; }
+    .card h3 { margin: 0 0 8px; font-size: 1.1rem; }
     .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+    .benefit-list {
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+      color: #384e81;
+      font-size: .92rem;
+    }
+
+    .social-proof {
+      margin-top: 26px;
+      background: var(--card);
+      border: 1px solid rgba(66, 96, 168, 0.16);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .logos {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .logo-chip {
+      background: var(--bg-soft);
+      border: 1px solid rgba(66, 96, 168, 0.15);
+      border-radius: 10px;
+      padding: 8px 10px;
+      text-align: center;
+      font-weight: 700;
+      color: #2a427d;
+      font-size: .9rem;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    blockquote {
+      margin: 0;
+      padding: 14px;
+      border-left: 3px solid #7f94ff;
+      background: #f7f9ff;
+      border-radius: 10px;
+      color: #334674;
+      font-size: .93rem;
+    }
+
+    blockquote cite {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      color: #5f6f94;
+      font-size: .85rem;
+      font-weight: 600;
+    }
 
     .pricing {
       display: grid;
@@ -242,7 +347,10 @@
       border-radius: 16px;
       background: var(--card);
       border: 1px solid rgba(66, 96, 168, 0.16);
+      transition: transform .2s ease;
     }
+
+    .price-card:hover { transform: translateY(-3px); }
 
     .price-card.featured {
       border-color: rgba(78,227,179,0.5);
@@ -250,7 +358,7 @@
     }
 
     .price {
-      font-size: 1.9rem;
+      font-size: 2rem;
       font-weight: 800;
       margin: 6px 0 10px;
     }
@@ -263,7 +371,7 @@
 
     .contact {
       margin: 28px 0 44px;
-      background: linear-gradient(130deg, rgba(124,140,255,.18), rgba(78,227,179,.1));
+      background: linear-gradient(130deg, rgba(124,140,255,.2), rgba(78,227,179,.14));
       border: 1px solid rgba(66, 96, 168, 0.18);
       border-radius: var(--radius);
       padding: 24px;
@@ -273,11 +381,32 @@
       align-items: center;
     }
 
+    .contact-options {
+      margin-top: 12px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: .93rem;
+    }
+
+    .contact-options a {
+      color: #2a427d;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(42, 66, 125, 0.45);
+    }
+
+    .contact-options a:hover,
+    .contact-options a:focus-visible {
+      color: var(--brand);
+      border-bottom-color: var(--brand);
+    }
+
     footer {
       border-top: 1px solid rgba(66, 96, 168, 0.12);
-      color: #6b7daa;
+      color: #586b9a;
       padding: 18px 0 28px;
-      font-size: .92rem;
+      font-size: .94rem;
     }
 
     .auth-section {
@@ -296,18 +425,41 @@
       margin-top: 14px;
     }
 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
     @media (max-width: 920px) {
       .hero,
       .grid,
       .pricing,
-      .contact {
+      .contact,
+      .testimonials {
         grid-template-columns: 1fr;
       }
 
-      .hero-search { grid-template-columns: 1fr; }
+      .hero-search,
+      .logos { grid-template-columns: 1fr; }
 
       .hero { padding-top: 56px; }
       .contact { text-align: left; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
@@ -319,6 +471,7 @@
         <div class="nav-links">
           <a href="#programas">Programas</a>
           <a href="#metodo">Método</a>
+          <a href="#social">Confianza</a>
           <a href="#precios">Precios</a>
           <a href="#acceso">Acceso</a>
           <a href="#contacto">Contacto</a>
@@ -331,64 +484,95 @@
   <main class="container">
     <section class="hero">
       <div>
-        <h1>Formaciones en <span style="color: var(--brand-2)">proyectos gamificados</span> para docentes que quieren transformar su aula.</h1>
-        <p class="lead">Ayudamos a claustros, coordinadores y profesorado a diseñar experiencias educativas motivadoras, medibles y alineadas con el currículo mediante narrativa, retos y evaluación competencial.</p>
+        <p class="eyebrow">Impulsa resultados reales en tu centro</p>
+        <h1>Convierte la motivación del alumnado en <span style="color: var(--brand-2)">mejores aprendizajes</span> con gamificación bien diseñada.</h1>
+        <p class="lead">Ayudamos a claustros y equipos directivos a implantar experiencias gamificadas que aumentan la implicación, mejoran la evaluación por competencias y reducen la improvisación docente con un método práctico y acompañamiento continuo.</p>
         <form class="hero-search" role="search" aria-label="Buscador de formaciones">
-          <input type="search" placeholder="¿Qué formación necesitas?" aria-label="Buscar formación" />
-          <select aria-label="Modalidad">
+          <label class="sr-only" for="busqueda">Buscar formación</label>
+          <input id="busqueda" type="search" placeholder="¿Qué reto quieres resolver en tu centro?" aria-label="Buscar formación" />
+          <label class="sr-only" for="modalidad">Modalidad</label>
+          <select id="modalidad" aria-label="Modalidad">
             <option value="">Modalidad</option>
             <option>Online</option>
             <option>Presencial</option>
             <option>Mixta</option>
           </select>
-          <select aria-label="Nivel">
+          <label class="sr-only" for="nivel">Nivel</label>
+          <select id="nivel" aria-label="Nivel">
             <option value="">Nivel</option>
             <option>Inicial</option>
             <option>Intermedio</option>
             <option>Avanzado</option>
           </select>
-          <button type="submit" class="btn btn-primary">Buscar</button>
+          <button type="submit" class="btn btn-primary">Encontrar plan</button>
         </form>
         <div class="cta-wrap">
-          <a class="btn btn-primary" href="#contacto">Solicitar propuesta</a>
-          <a class="btn btn-secondary" href="#precios">Ver programas</a>
+          <a class="btn btn-primary" href="#contacto">Quiero una propuesta en 24h</a>
+          <a class="btn btn-secondary" href="#programas">Ver programas y resultados</a>
         </div>
       </div>
 
       <aside class="hero-card" aria-label="Beneficios clave">
-        <p><strong>Resultados que persigue tu centro:</strong></p>
-        <span class="pill">🎯 Mayor implicación del alumnado</span>
-        <span class="pill">🧠 Aprendizaje más significativo</span>
-        <span class="pill">📊 Evaluación clara por competencias</span>
-        <span class="pill">🤝 Trabajo cooperativo real</span>
+        <p><strong>Lo que conseguís desde el primer trimestre:</strong></p>
+        <span class="pill">🎯 Más participación en clase sin forzar</span>
+        <span class="pill">🧠 Aprendizaje memorable y aplicado</span>
+        <span class="pill">📊 Evaluación competencial más clara</span>
+        <span class="pill">🤝 Coordinación docente más fluida</span>
+        <div class="benefit-list">
+          <div>✅ Plantillas listas para implementar en el aula.</div>
+          <div>✅ Mentoría para resolver bloqueos durante la puesta en marcha.</div>
+          <div>✅ Indicadores para medir impacto y justificar decisiones pedagógicas.</div>
+        </div>
       </aside>
     </section>
 
     <section id="programas">
-      <h2>Programas formativos</h2>
-      <p class="section-intro">Elige la modalidad que mejor encaje con tu etapa educativa, tiempo disponible y nivel de experiencia en gamificación.</p>
+      <h2>Programas formativos orientados a resultados</h2>
+      <p class="section-intro">No solo formamos: os ayudamos a salir con un plan accionable para que cada sesión se traduzca en mejoras visibles en motivación, evaluación y desempeño docente.</p>
       <div class="grid">
         <article class="card">
           <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=80" alt="Docentes en una sesión de formación inicial" loading="lazy" />
           <div class="card-content">
-            <h3>Iniciación a la gamificación</h3>
-            <p>Para equipos que empiezan desde cero: fundamentos, mecánicas, dinámicas y prototipo de proyecto aplicable al aula.</p>
+            <h3>Iniciación estratégica</h3>
+            <p>En 4 a 8 horas vuestro equipo domina los fundamentos y diseña una primera experiencia gamificada viable para arrancar con seguridad.</p>
           </div>
         </article>
         <article class="card">
           <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80" alt="Equipo docente diseñando un proyecto educativo" loading="lazy" />
           <div class="card-content">
             <h3>Diseño de proyecto completo</h3>
-            <p>Creación guiada de una secuencia gamificada trimestral con narrativa, misiones, insignias y rúbricas.</p>
+            <p>Construimos juntos una secuencia trimestral con narrativa, misiones e instrumentos de evaluación para que el claustro gane coherencia.</p>
           </div>
         </article>
         <article class="card">
           <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80" alt="Mentoría y acompañamiento entre docentes" loading="lazy" />
           <div class="card-content">
-            <h3>Mentoría para centros</h3>
-            <p>Acompañamiento durante la implantación para ajustar estrategias, resolver bloqueos y medir impacto.</p>
+            <h3>Mentoría de implementación</h3>
+            <p>Acompañamos la ejecución en aula para ajustar estrategias, mantener la motivación y asegurar transferencia real al día a día docente.</p>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section id="social" class="social-proof">
+      <h2>Centros que ya confían en PALADAM</h2>
+      <p class="section-intro">Más de 120 equipos docentes han incorporado metodologías gamificadas con nuestro acompañamiento.</p>
+      <div class="logos" aria-label="Centros colaboradores">
+        <div class="logo-chip">IES Sierra Norte</div>
+        <div class="logo-chip">Colegio Ágora</div>
+        <div class="logo-chip">CEIP Mirador</div>
+        <div class="logo-chip">Fundación Aula Viva</div>
+      </div>
+      <div class="testimonials">
+        <blockquote>“En dos meses pasamos de ideas sueltas a una propuesta coordinada por ciclos. El nivel de implicación del alumnado subió muchísimo.”
+          <cite>— Marta R., Jefa de Estudios (Primaria)</cite>
+        </blockquote>
+        <blockquote>“Lo mejor fue tener métricas claras para evaluar competencias sin perder tiempo en burocracia.”
+          <cite>— Pablo L., Coordinador pedagógico (Secundaria)</cite>
+        </blockquote>
+        <blockquote>“El acompañamiento nos dio seguridad para implantar cambios sin quemar al profesorado.”
+          <cite>— Ana G., Directora de centro concertado</cite>
+        </blockquote>
       </div>
     </section>
 
@@ -403,26 +587,32 @@
 
     <section id="metodo">
       <h2>Método PALADAM</h2>
-      <p class="section-intro">Un proceso claro para pasar de la idea a la implementación sin perder foco pedagógico.</p>
+      <p class="section-intro">Un proceso claro para pasar de la idea a la implementación con foco pedagógico, seguimiento y mejora continua.</p>
       <div class="grid">
         <article class="card">
-          <h3>1. Diagnóstico</h3>
-          <p>Analizamos contexto, necesidades del claustro y objetivos de aprendizaje prioritarios.</p>
+          <div class="card-content">
+            <h3>1. Diagnóstico</h3>
+            <p>Analizamos contexto, necesidades del claustro y objetivos prioritarios para definir una hoja de ruta realista.</p>
+          </div>
         </article>
         <article class="card">
-          <h3>2. Co-diseño</h3>
-          <p>Definimos narrativa, retos, sistema de progreso y evidencias de evaluación.</p>
+          <div class="card-content">
+            <h3>2. Co-diseño</h3>
+            <p>Diseñamos narrativa, retos y evaluación con criterios compartidos para facilitar adopción por todo el equipo docente.</p>
+          </div>
         </article>
         <article class="card">
-          <h3>3. Implementación</h3>
-          <p>Aplicamos el proyecto en el aula con seguimiento y mejora continua basada en datos.</p>
+          <div class="card-content">
+            <h3>3. Implementación</h3>
+            <p>Aplicamos, medimos y optimizamos en ciclos cortos para consolidar una mejora sostenible en el aula.</p>
+          </div>
         </article>
       </div>
     </section>
 
     <section id="precios">
       <h2>Planes y precios orientativos</h2>
-      <p class="section-intro">Presupuestos adaptables según número de docentes, horas y formato (online/presencial).</p>
+      <p class="section-intro">Presupuestos adaptables según número de docentes, horas y formato. Te ayudamos a elegir la opción con mayor retorno para tu centro.</p>
       <div class="pricing">
         <article class="price-card">
           <h3>Starter</h3>
@@ -456,10 +646,15 @@
 
     <section class="contact" id="contacto">
       <div>
-        <h2 style="margin-bottom: 8px;">¿Quieres llevarlo a tu claustro?</h2>
-        <p style="margin: 0; color: var(--muted);">Cuéntanos tu etapa educativa y número de docentes. Te enviaremos una propuesta personalizada en 24-48h.</p>
+        <h2 style="margin-bottom: 8px;">¿Listos para activar el cambio en vuestro claustro?</h2>
+        <p style="margin: 0; color: var(--muted);">Cuéntanos vuestra etapa educativa y número de docentes. Recibirás una propuesta accionable y personalizada en 24-48h.</p>
+        <div class="contact-options">
+          <a href="mailto:hola@paladam.com">hola@paladam.com</a>
+          <a href="tel:+34910000000">+34 910 00 00 00</a>
+          <a href="https://wa.me/34910000000">WhatsApp</a>
+        </div>
       </div>
-      <a class="btn btn-primary" href="mailto:hola@paladam.com">Escribir a hola@paladam.com</a>
+      <a class="btn btn-primary" href="mailto:hola@paladam.com?subject=Quiero%20una%20propuesta%20PALADAM">Solicitar propuesta ahora</a>
     </section>
   </main>
 
