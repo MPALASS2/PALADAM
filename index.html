@@ -7,16 +7,37 @@
   <meta name="description" content="Diseñamos y acompañamos formaciones en proyectos gamificados para docentes de todas las etapas educativas." />
   <style>
     :root {
-      --bg: #f1f5ff;
-      --bg-soft: #e6edff;
-      --card: #ffffff;
-      --text: #17264d;
-      --muted: #4f6086;
-      --brand: #3f57d0;
-      --brand-2: #008f7c;
-      --accent: #ffb547;
-      --shadow: 0 14px 30px rgba(28, 54, 110, 0.12);
-      --radius: 18px;
+      --font-main: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+      --color-primary: #127a63;
+      --color-primary-strong: #0b5c4a;
+      --color-primary-soft: #def5ee;
+      --color-neutral: #1f2937;
+      --color-bg: #f7faf9;
+      --color-surface: #ffffff;
+      --color-border: #d7e0dd;
+      --color-text: #0f172a;
+      --color-muted: #526071;
+      --color-muted-soft: #6d7b8d;
+
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 32px;
+      --space-5: 40px;
+      --space-6: 48px;
+      --space-8: 64px;
+      --space-10: 80px;
+
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+
+      --shadow-sm: 0 8px 20px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 16px 36px rgba(15, 23, 42, 0.1);
+      --shadow-focus: 0 0 0 3px rgba(18, 122, 99, 0.25);
+
+      --transition-base: all 200ms ease;
     }
 
     * { box-sizing: border-box; }
@@ -25,240 +46,305 @@
 
     body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 10% 10%, #d8e4ff 0%, transparent 45%),
-        radial-gradient(circle at 85% 18%, #d6f4ef 0%, transparent 35%),
-        linear-gradient(180deg, var(--bg), #edf2ff 70%);
-      min-height: 100vh;
-      line-height: 1.6;
-      font-size: 17px;
+      font-family: var(--font-main);
+      color: var(--color-text);
+      background: radial-gradient(circle at 0 0, #eef8f5 0%, transparent 35%), var(--color-bg);
+      line-height: 1.55;
+      font-size: 16px;
     }
 
     .container {
-      width: min(1100px, 92vw);
+      width: min(1120px, 92vw);
       margin: 0 auto;
     }
 
-    header {
-      padding: 20px 0;
+    .site-header {
       position: sticky;
       top: 0;
-      backdrop-filter: blur(8px);
-      background: rgba(243, 246, 255, 0.9);
-      z-index: 10;
-      border-bottom: 1px solid rgba(48, 74, 138, 0.14);
+      z-index: 40;
+      border-bottom: 1px solid transparent;
+      transition: var(--transition-base);
+    }
+
+    .site-header.is-scrolled {
+      background: rgba(247, 250, 249, 0.84);
+      backdrop-filter: blur(12px);
+      border-bottom-color: rgba(15, 23, 42, 0.08);
     }
 
     nav {
+      min-height: 76px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      gap: var(--space-2);
     }
 
     .logo {
       font-weight: 800;
-      font-size: 1.18rem;
-      letter-spacing: .4px;
-      color: #11224f;
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+      color: var(--color-neutral);
+      text-decoration: none;
     }
 
-    .logo span { color: var(--brand-2); }
+    .logo span { color: var(--color-primary); }
 
     .nav-links {
       display: flex;
-      gap: 18px;
+      gap: var(--space-1);
       flex-wrap: wrap;
     }
 
     .nav-links a {
-      color: var(--muted);
+      position: relative;
       text-decoration: none;
-      font-size: .95rem;
+      color: var(--color-muted);
       font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 999px;
+      padding: 10px 12px;
+      transition: var(--transition-base);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 6px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--color-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition-base);
     }
 
     .nav-links a:hover,
-    .nav-links a:focus-visible { color: var(--brand); }
+    .nav-links a.active {
+      color: var(--color-primary-strong);
+      background: rgba(18, 122, 99, 0.08);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after { transform: scaleX(1); }
+
+    .btn {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 0.94rem;
+      line-height: 1;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-base);
+      transform: translateY(0);
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      opacity: 0;
+      transition: var(--transition-base);
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .btn:active { transform: translateY(0); box-shadow: none; }
+    .btn:hover::before { opacity: 1; }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--color-primary), #18a082);
+      box-shadow: 0 10px 24px rgba(18, 122, 99, 0.24);
+    }
+
+    .btn-ghost {
+      color: var(--color-neutral);
+      background: transparent;
+      border-color: var(--color-border);
+    }
+
+    .btn-auth {
+      background: var(--color-neutral);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.08);
+      white-space: nowrap;
+    }
 
     .hero {
-      padding: 88px 0 46px;
+      padding: var(--space-10) 0 var(--space-8);
       display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 32px;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      gap: var(--space-5);
       align-items: center;
     }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      padding: 5px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(63, 87, 208, 0.35);
-      background: rgba(63, 87, 208, 0.1);
-      color: #2c418d;
-      font-size: .86rem;
-      font-weight: 700;
+      margin: 0 0 var(--space-2);
+      color: var(--color-primary-strong);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: .5px;
+      font-weight: 700;
     }
 
     h1 {
-      margin: 0 0 18px;
-      font-size: clamp(2rem, 5vw, 3.45rem);
+      margin: 0;
+      max-width: 18ch;
+      font-size: clamp(2rem, 4.9vw, 3.5rem);
       line-height: 1.08;
-      letter-spacing: .3px;
+      letter-spacing: -0.02em;
     }
 
+    h1 .accent { color: var(--color-primary); }
+
     .lead {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.13rem;
-      max-width: 60ch;
+      margin: var(--space-3) 0 0;
+      color: var(--color-muted);
+      max-width: 56ch;
+    }
+
+    .hero-config {
+      margin-top: var(--space-4);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: var(--space-2);
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-1);
+      transition: var(--transition-base);
+    }
+
+    .hero-config:hover { box-shadow: var(--shadow-md); }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      padding: var(--space-1);
+      border-radius: 10px;
+      background: #f9fbfa;
+      border: 1px solid #ebf0ee;
+    }
+
+    .field label {
+      color: var(--color-muted-soft);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field select {
+      border: 0;
+      padding: 0;
+      font: inherit;
+      color: var(--color-text);
+      background: transparent;
+      min-width: 0;
+      outline: none;
+    }
+
+    .cta-wrap {
+      margin-top: var(--space-4);
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .surface-card {
+      position: relative;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-base);
+    }
+
+    .surface-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1px solid rgba(18, 122, 99, 0.35);
+      opacity: 0;
+      transform: scale(0.985);
+      transition: var(--transition-base);
+      pointer-events: none;
+    }
+
+    .surface-card:hover,
+    .surface-card:focus-within {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(18, 122, 99, 0.35);
+    }
+
+    .surface-card:hover::before,
+    .surface-card:focus-within::before {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .hero-card {
-      background: linear-gradient(180deg, #ffffff, #f8faff);
-      border: 1px solid rgba(66, 96, 168, 0.16);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-      transition: transform .25s ease, box-shadow .25s ease;
+      padding: var(--space-3);
     }
 
-    .hero-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 34px rgba(28, 54, 110, 0.18);
-    }
-
-    .hero-search {
-      margin-top: 20px;
-      background: #fff;
-      border: 1px solid rgba(66, 96, 168, 0.25);
-      border-radius: 14px;
-      display: grid;
-      grid-template-columns: 1.2fr .9fr .9fr auto;
-      gap: 10px;
-      padding: 12px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-search input,
-    .hero-search select {
-      border: 1px solid rgba(75, 102, 174, 0.35);
-      border-radius: 10px;
-      padding: 11px 12px;
-      font: inherit;
-      color: var(--text);
-      background: #f9fbff;
-      min-width: 0;
-    }
-
-    .hero-search .btn {
-      border-radius: 10px;
-      padding-inline: 16px;
-    }
-
-    .hero-card p {
-      margin: 0 0 10px;
-      color: var(--muted);
-      font-size: .95rem;
-    }
+    .hero-card p { margin: 0 0 var(--space-2); color: var(--color-muted); }
 
     .pill {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(74,99,217,0.12);
-      border: 1px solid rgba(74,99,217,0.35);
-      color: #21396f;
+      margin: 0 var(--space-1) var(--space-1) 0;
       border-radius: 999px;
-      padding: 7px 12px;
-      margin: 0 8px 8px 0;
-      font-size: .86rem;
-      transition: transform .2s ease;
+      border: 1px solid #cae6dd;
+      padding: 6px 12px;
+      font-size: 0.86rem;
+      color: var(--color-primary-strong);
+      background: var(--color-primary-soft);
+      transition: var(--transition-base);
+      cursor: default;
     }
 
-    .pill:hover { transform: translateY(-1px); }
+    .pill:hover { transform: translateY(-2px); }
 
-    .cta-wrap {
-      display: flex;
-      gap: 12px;
-      margin-top: 24px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      border: 0;
-      border-radius: 12px;
-      padding: 12px 18px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-block;
-      transition: transform .18s ease, box-shadow .2s ease;
-      cursor: pointer;
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 14px rgba(28, 54, 110, 0.16);
-    }
-
-    .btn-primary {
-      background: linear-gradient(120deg, var(--brand), #98a4ff);
-      color: white;
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.95);
-      color: var(--text);
-      border: 1px solid rgba(66, 96, 168, 0.35);
-    }
-
-    .btn-auth {
-      background: linear-gradient(120deg, #0a9a86, #1fb69f);
-      color: #fff;
-      white-space: nowrap;
-    }
-
-    section { padding: 24px 0 18px; }
+    section { padding: var(--space-6) 0 var(--space-2); scroll-margin-top: 90px; }
 
     h2 {
-      margin: 0 0 10px;
-      font-size: clamp(1.55rem, 3.4vw, 2.1rem);
-      line-height: 1.2;
+      margin: 0;
+      font-size: clamp(1.65rem, 3.6vw, 2.3rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
     }
 
     .section-intro {
-      color: var(--muted);
-      margin-bottom: 22px;
+      margin: var(--space-2) 0 var(--space-4);
+      color: var(--color-muted);
       max-width: 68ch;
     }
 
-    .grid {
+    .grid,
+    .pricing,
+    .testimonials {
       display: grid;
+      gap: var(--space-2);
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
     }
 
     .card {
-      background: linear-gradient(180deg, #ffffff, #f8faff);
-      border: 1px solid rgba(66, 96, 168, 0.16);
-      border-radius: 16px;
-      padding: 0;
       overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 30px rgba(28, 54, 110, 0.16);
+      text-decoration: none;
+      color: inherit;
     }
 
     .card img {
@@ -268,206 +354,136 @@
       display: block;
     }
 
-    .card-content {
-      padding: 16px 18px 18px;
-    }
+    .card-content { padding: var(--space-2); }
+    .card h3 { margin: 0 0 var(--space-1); }
+    .card p { margin: 0; color: var(--color-muted); font-size: 0.95rem; }
 
-    .card h3 { margin: 0 0 8px; font-size: 1.1rem; }
-    .card p { margin: 0; color: var(--muted); font-size: .95rem; }
-
-    .benefit-list {
-      margin-top: 12px;
-      display: grid;
-      gap: 8px;
-      color: #384e81;
-      font-size: .92rem;
-    }
-
-    .social-proof {
-      margin-top: 26px;
-      background: var(--card);
-      border: 1px solid rgba(66, 96, 168, 0.16);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
+    .social-proof { padding: var(--space-4); }
 
     .logos {
+      margin-bottom: var(--space-3);
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: var(--space-1);
     }
 
     .logo-chip {
-      background: var(--bg-soft);
-      border: 1px solid rgba(66, 96, 168, 0.15);
+      border: 1px solid var(--color-border);
+      background: #f3f7f6;
       border-radius: 10px;
-      padding: 8px 10px;
+      padding: 10px;
       text-align: center;
       font-weight: 700;
-      color: #2a427d;
-      font-size: .9rem;
+      color: #2f3f4f;
+      transition: var(--transition-base);
     }
 
-    .testimonials {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
+    .logo-chip:hover { border-color: #b8cbc5; transform: translateY(-2px); }
 
     blockquote {
       margin: 0;
-      padding: 14px;
-      border-left: 3px solid #7f94ff;
-      background: #f7f9ff;
-      border-radius: 10px;
-      color: #334674;
-      font-size: .93rem;
+      border-left: 3px solid var(--color-primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: var(--space-2);
+      background: #f8fbfa;
+      color: #344455;
     }
 
     blockquote cite {
       display: block;
-      margin-top: 8px;
+      margin-top: var(--space-1);
+      color: var(--color-muted-soft);
+      font-size: 0.86rem;
       font-style: normal;
-      color: #5f6f94;
-      font-size: .85rem;
       font-weight: 600;
     }
 
-    .pricing {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .price-card {
-      padding: 20px;
-      border-radius: 16px;
-      background: var(--card);
-      border: 1px solid rgba(66, 96, 168, 0.16);
-      transition: transform .2s ease;
-    }
-
-    .price-card:hover { transform: translateY(-3px); }
-
+    .price-card { padding: var(--space-3); }
     .price-card.featured {
-      border-color: rgba(78,227,179,0.5);
-      box-shadow: 0 0 0 2px rgba(78,227,179,0.2), var(--shadow);
+      border-color: rgba(18, 122, 99, 0.48);
+      box-shadow: 0 0 0 1px rgba(18, 122, 99, 0.24), var(--shadow-md);
     }
 
     .price {
-      font-size: 2rem;
+      margin: var(--space-1) 0 var(--space-2);
       font-weight: 800;
-      margin: 6px 0 10px;
+      font-size: 2rem;
+      color: var(--color-neutral);
     }
 
-    ul {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
+    ul { margin: 0; padding-left: 18px; color: var(--color-muted); display: grid; gap: 6px; }
+
+    .auth-section,
+    .contact {
+      padding: var(--space-4);
+    }
+
+    .auth-actions,
+    .contact-options {
+      margin-top: var(--space-2);
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
     }
 
     .contact {
-      margin: 28px 0 44px;
-      background: linear-gradient(130deg, rgba(124,140,255,.2), rgba(78,227,179,.14));
-      border: 1px solid rgba(66, 96, 168, 0.18);
-      border-radius: var(--radius);
-      padding: 24px;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 16px;
       align-items: center;
-    }
-
-    .contact-options {
-      margin-top: 12px;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      font-size: .93rem;
+      margin: var(--space-4) 0 var(--space-6);
+      background: linear-gradient(140deg, #f7fcfa, #edf8f4);
     }
 
     .contact-options a {
-      color: #2a427d;
-      font-weight: 700;
+      color: var(--color-primary-strong);
       text-decoration: none;
-      border-bottom: 1px dashed rgba(42, 66, 125, 0.45);
+      border-bottom: 1px solid rgba(18, 122, 99, 0.3);
+      transition: var(--transition-base);
     }
 
-    .contact-options a:hover,
-    .contact-options a:focus-visible {
-      color: var(--brand);
-      border-bottom-color: var(--brand);
-    }
+    .contact-options a:hover { border-bottom-color: var(--color-primary); color: var(--color-primary); }
 
     footer {
-      border-top: 1px solid rgba(66, 96, 168, 0.12);
-      color: #586b9a;
-      padding: 18px 0 28px;
-      font-size: .94rem;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+      color: var(--color-muted-soft);
+      padding: var(--space-3) 0 var(--space-4);
+      font-size: 0.93rem;
     }
 
-    .auth-section {
-      margin: 28px 0;
-      background: #fff;
-      border: 1px solid rgba(66, 96, 168, 0.16);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .auth-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
+    :where(a, button, input, select, .card, .logo-chip):focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus);
+      border-radius: var(--radius-sm);
     }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
-        animation: none !important;
         transition: none !important;
+        animation: none !important;
         scroll-behavior: auto !important;
       }
     }
 
-    @media (max-width: 920px) {
+    @media (max-width: 960px) {
       .hero,
       .grid,
       .pricing,
-      .contact,
-      .testimonials {
-        grid-template-columns: 1fr;
-      }
+      .testimonials,
+      .contact { grid-template-columns: 1fr; }
 
-      .hero-search,
+      .hero-config,
       .logos { grid-template-columns: 1fr; }
 
-      .hero { padding-top: 56px; }
-      .contact { text-align: left; }
+      .hero { padding-top: var(--space-8); }
       .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
-  <header>
+  <header class="site-header" id="site-header">
     <div class="container">
       <nav>
-        <div class="logo">PALA<span>DAM</span></div>
+        <a class="logo" href="#">PALA<span>DAM</span></a>
         <div class="nav-links">
           <a href="#programas">Programas</a>
           <a href="#metodo">Método</a>
@@ -482,43 +498,50 @@
   </header>
 
   <main class="container">
-    <section class="hero">
+    <section class="hero" id="inicio">
       <div>
-        <p class="eyebrow">Impulsa resultados reales en tu centro</p>
-        <h1>Convierte la motivación del alumnado en <span style="color: var(--brand-2)">mejores aprendizajes</span> con gamificación bien diseñada.</h1>
+        <p class="eyebrow">Formación gamificada para centros educativos</p>
+        <h1>Transforma la motivación del alumnado en <span class="accent">aprendizajes medibles</span>.</h1>
         <p class="lead">Ayudamos a claustros y equipos directivos a implantar experiencias gamificadas que aumentan la implicación, mejoran la evaluación por competencias y reducen la improvisación docente con un método práctico y acompañamiento continuo.</p>
-        <form class="hero-search" role="search" aria-label="Buscador de formaciones">
-          <label class="sr-only" for="busqueda">Buscar formación</label>
-          <input id="busqueda" type="search" placeholder="¿Qué reto quieres resolver en tu centro?" aria-label="Buscar formación" />
-          <label class="sr-only" for="modalidad">Modalidad</label>
-          <select id="modalidad" aria-label="Modalidad">
-            <option value="">Modalidad</option>
-            <option>Online</option>
-            <option>Presencial</option>
-            <option>Mixta</option>
-          </select>
-          <label class="sr-only" for="nivel">Nivel</label>
-          <select id="nivel" aria-label="Nivel">
-            <option value="">Nivel</option>
-            <option>Inicial</option>
-            <option>Intermedio</option>
-            <option>Avanzado</option>
-          </select>
-          <button type="submit" class="btn btn-primary">Encontrar plan</button>
+
+        <form class="hero-config" role="search" aria-label="Configurador de plan">
+          <div class="field">
+            <label for="busqueda">Objetivo del centro</label>
+            <input id="busqueda" type="search" placeholder="¿Qué reto queréis resolver?" aria-label="Buscar formación" />
+          </div>
+          <div class="field">
+            <label for="modalidad">Modalidad</label>
+            <select id="modalidad" aria-label="Modalidad">
+              <option value="">Seleccionar</option>
+              <option>Online</option>
+              <option>Presencial</option>
+              <option>Mixta</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="nivel">Nivel</label>
+            <select id="nivel" aria-label="Nivel">
+              <option value="">Seleccionar</option>
+              <option>Inicial</option>
+              <option>Intermedio</option>
+              <option>Avanzado</option>
+            </select>
+          </div>
         </form>
+
         <div class="cta-wrap">
           <a class="btn btn-primary" href="#contacto">Quiero una propuesta en 24h</a>
-          <a class="btn btn-secondary" href="#programas">Ver programas y resultados</a>
+          <a class="btn btn-ghost" href="#programas">Ver programas y resultados</a>
         </div>
       </div>
 
-      <aside class="hero-card" aria-label="Beneficios clave">
+      <aside class="hero-card surface-card" aria-label="Beneficios clave">
         <p><strong>Lo que conseguís desde el primer trimestre:</strong></p>
         <span class="pill">🎯 Más participación en clase sin forzar</span>
         <span class="pill">🧠 Aprendizaje memorable y aplicado</span>
         <span class="pill">📊 Evaluación competencial más clara</span>
         <span class="pill">🤝 Coordinación docente más fluida</span>
-        <div class="benefit-list">
+        <div style="display:grid; gap:8px; margin-top:16px; color:var(--color-muted); font-size:.92rem;">
           <div>✅ Plantillas listas para implementar en el aula.</div>
           <div>✅ Mentoría para resolver bloqueos durante la puesta en marcha.</div>
           <div>✅ Indicadores para medir impacto y justificar decisiones pedagógicas.</div>
@@ -530,21 +553,21 @@
       <h2>Programas formativos orientados a resultados</h2>
       <p class="section-intro">No solo formamos: os ayudamos a salir con un plan accionable para que cada sesión se traduzca en mejoras visibles en motivación, evaluación y desempeño docente.</p>
       <div class="grid">
-        <article class="card">
+        <article class="card surface-card">
           <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=80" alt="Docentes en una sesión de formación inicial" loading="lazy" />
           <div class="card-content">
             <h3>Iniciación estratégica</h3>
             <p>En 4 a 8 horas vuestro equipo domina los fundamentos y diseña una primera experiencia gamificada viable para arrancar con seguridad.</p>
           </div>
         </article>
-        <article class="card">
+        <article class="card surface-card">
           <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80" alt="Equipo docente diseñando un proyecto educativo" loading="lazy" />
           <div class="card-content">
             <h3>Diseño de proyecto completo</h3>
             <p>Construimos juntos una secuencia trimestral con narrativa, misiones e instrumentos de evaluación para que el claustro gane coherencia.</p>
           </div>
         </article>
-        <article class="card">
+        <article class="card surface-card">
           <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80" alt="Mentoría y acompañamiento entre docentes" loading="lazy" />
           <div class="card-content">
             <h3>Mentoría de implementación</h3>
@@ -554,7 +577,7 @@
       </div>
     </section>
 
-    <section id="social" class="social-proof">
+    <section id="social" class="social-proof surface-card">
       <h2>Centros que ya confían en PALADAM</h2>
       <p class="section-intro">Más de 120 equipos docentes han incorporado metodologías gamificadas con nuestro acompañamiento.</p>
       <div class="logos" aria-label="Centros colaboradores">
@@ -576,12 +599,12 @@
       </div>
     </section>
 
-    <section id="acceso" class="auth-section">
+    <section id="acceso" class="auth-section surface-card">
       <h2>Acceso de usuarios</h2>
       <p class="section-intro" style="margin-bottom: 0;">Gestiona tu itinerario formativo, guarda cursos favoritos y consulta tus avances.</p>
       <div class="auth-actions">
         <a class="btn btn-primary" href="#">Iniciar sesión</a>
-        <a class="btn btn-secondary" href="#">Crear cuenta</a>
+        <a class="btn btn-ghost" href="#">Crear cuenta</a>
       </div>
     </section>
 
@@ -589,24 +612,9 @@
       <h2>Método PALADAM</h2>
       <p class="section-intro">Un proceso claro para pasar de la idea a la implementación con foco pedagógico, seguimiento y mejora continua.</p>
       <div class="grid">
-        <article class="card">
-          <div class="card-content">
-            <h3>1. Diagnóstico</h3>
-            <p>Analizamos contexto, necesidades del claustro y objetivos prioritarios para definir una hoja de ruta realista.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-content">
-            <h3>2. Co-diseño</h3>
-            <p>Diseñamos narrativa, retos y evaluación con criterios compartidos para facilitar adopción por todo el equipo docente.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-content">
-            <h3>3. Implementación</h3>
-            <p>Aplicamos, medimos y optimizamos en ciclos cortos para consolidar una mejora sostenible en el aula.</p>
-          </div>
-        </article>
+        <article class="card surface-card"><div class="card-content"><h3>1. Diagnóstico</h3><p>Analizamos contexto, necesidades del claustro y objetivos prioritarios para definir una hoja de ruta realista.</p></div></article>
+        <article class="card surface-card"><div class="card-content"><h3>2. Co-diseño</h3><p>Diseñamos narrativa, retos y evaluación con criterios compartidos para facilitar adopción por todo el equipo docente.</p></div></article>
+        <article class="card surface-card"><div class="card-content"><h3>3. Implementación</h3><p>Aplicamos, medimos y optimizamos en ciclos cortos para consolidar una mejora sostenible en el aula.</p></div></article>
       </div>
     </section>
 
@@ -614,40 +622,16 @@
       <h2>Planes y precios orientativos</h2>
       <p class="section-intro">Presupuestos adaptables según número de docentes, horas y formato. Te ayudamos a elegir la opción con mayor retorno para tu centro.</p>
       <div class="pricing">
-        <article class="price-card">
-          <h3>Starter</h3>
-          <p class="price">390€</p>
-          <ul>
-            <li>Taller de 4h</li>
-            <li>Materiales base</li>
-            <li>Plantilla de misión</li>
-          </ul>
-        </article>
-        <article class="price-card featured">
-          <h3>Centro Activo</h3>
-          <p class="price">1.190€</p>
-          <ul>
-            <li>12h de formación</li>
-            <li>Proyecto trimestral guiado</li>
-            <li>2 sesiones de mentoría</li>
-          </ul>
-        </article>
-        <article class="price-card">
-          <h3>Transformación anual</h3>
-          <p class="price">2.750€</p>
-          <ul>
-            <li>Plan anual de centro</li>
-            <li>Mentoría mensual</li>
-            <li>Informe de impacto</li>
-          </ul>
-        </article>
+        <article class="price-card surface-card"><h3>Starter</h3><p class="price">390€</p><ul><li>Taller de 4h</li><li>Materiales base</li><li>Plantilla de misión</li></ul></article>
+        <article class="price-card featured surface-card"><h3>Centro Activo</h3><p class="price">1.190€</p><ul><li>12h de formación</li><li>Proyecto trimestral guiado</li><li>2 sesiones de mentoría</li></ul></article>
+        <article class="price-card surface-card"><h3>Transformación anual</h3><p class="price">2.750€</p><ul><li>Plan anual de centro</li><li>Mentoría mensual</li><li>Informe de impacto</li></ul></article>
       </div>
     </section>
 
-    <section class="contact" id="contacto">
+    <section class="contact surface-card" id="contacto">
       <div>
         <h2 style="margin-bottom: 8px;">¿Listos para activar el cambio en vuestro claustro?</h2>
-        <p style="margin: 0; color: var(--muted);">Cuéntanos vuestra etapa educativa y número de docentes. Recibirás una propuesta accionable y personalizada en 24-48h.</p>
+        <p style="margin: 0; color: var(--color-muted);">Cuéntanos vuestra etapa educativa y número de docentes. Recibirás una propuesta accionable y personalizada en 24-48h.</p>
         <div class="contact-options">
           <a href="mailto:hola@paladam.com">hola@paladam.com</a>
           <a href="tel:+34910000000">+34 910 00 00 00</a>
@@ -663,6 +647,40 @@
   </footer>
 
   <script>
+    const header = document.getElementById('site-header');
+    const navLinks = Array.from(document.querySelectorAll('.nav-links a'));
+    const sections = navLinks
+      .map(link => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    const setScrolledHeader = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
+    };
+
+    const setActiveLink = () => {
+      const trigger = window.scrollY + 140;
+      let currentId = sections[0]?.id;
+
+      sections.forEach(section => {
+        if (section.offsetTop <= trigger) {
+          currentId = section.id;
+        }
+      });
+
+      navLinks.forEach(link => {
+        const isActive = link.getAttribute('href') === `#${currentId}`;
+        link.classList.toggle('active', isActive);
+        link.setAttribute('aria-current', isActive ? 'page' : 'false');
+      });
+    };
+
+    document.addEventListener('scroll', () => {
+      setScrolledHeader();
+      setActiveLink();
+    }, { passive: true });
+
+    setScrolledHeader();
+    setActiveLink();
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
