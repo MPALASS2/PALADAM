@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PALADAM | Formaciones Gamificadas para Docentes</title>
+  <meta name="description" content="Diseñamos y acompañamos formaciones en proyectos gamificados para docentes de todas las etapas educativas." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121a33;
+      --card: #161f3e;
+      --text: #e8ecff;
+      --muted: #b6c0ee;
+      --brand: #7c8cff;
+      --brand-2: #4ee3b3;
+      --accent: #ffd166;
+      --shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, #1e2a58 0%, transparent 38%),
+        radial-gradient(circle at 85% 18%, #1f6f73 0%, transparent 36%),
+        linear-gradient(180deg, var(--bg), #070a15 65%);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 24px 0;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(8px);
+      background: rgba(11, 16, 32, 0.55);
+      z-index: 10;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: .4px;
+      color: #fff;
+    }
+
+    .logo span { color: var(--brand-2); }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .95rem;
+    }
+
+    .hero {
+      padding: 90px 0 54px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: .3px;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 62ch;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(124,140,255,0.15);
+      border: 1px solid rgba(124,140,255,0.35);
+      color: #d8deff;
+      border-radius: 999px;
+      padding: 7px 12px;
+      margin: 0 8px 8px 0;
+      font-size: .86rem;
+    }
+
+    .cta-wrap {
+      display: flex;
+      gap: 12px;
+      margin-top: 26px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform .18s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--brand), #98a4ff);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.07);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    section { padding: 24px 0 18px; }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.45rem, 3.4vw, 2rem);
+    }
+
+    .section-intro { color: var(--muted); margin-bottom: 22px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 { margin: 0 0 8px; font-size: 1.06rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .price-card {
+      padding: 20px;
+      border-radius: 16px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .price-card.featured {
+      border-color: rgba(78,227,179,0.5);
+      box-shadow: 0 0 0 2px rgba(78,227,179,0.2), var(--shadow);
+    }
+
+    .price {
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin: 6px 0 10px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .contact {
+      margin: 28px 0 44px;
+      background: linear-gradient(130deg, rgba(124,140,255,.18), rgba(78,227,179,.1));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #9aa7df;
+      padding: 18px 0 28px;
+      font-size: .92rem;
+    }
+
+    @media (max-width: 920px) {
+      .hero,
+      .grid,
+      .pricing,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { padding-top: 56px; }
+      .contact { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">PALA<span>DAM</span></div>
+        <div class="nav-links">
+          <a href="#programas">Programas</a>
+          <a href="#metodo">Método</a>
+          <a href="#precios">Precios</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1>Formaciones en <span style="color: var(--brand-2)">proyectos gamificados</span> para docentes que quieren transformar su aula.</h1>
+        <p class="lead">Ayudamos a claustros, coordinadores y profesorado a diseñar experiencias educativas motivadoras, medibles y alineadas con el currículo mediante narrativa, retos y evaluación competencial.</p>
+        <div class="cta-wrap">
+          <a class="btn btn-primary" href="#contacto">Solicitar propuesta</a>
+          <a class="btn btn-secondary" href="#precios">Ver programas</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Beneficios clave">
+        <p><strong>Resultados que persigue tu centro:</strong></p>
+        <span class="pill">🎯 Mayor implicación del alumnado</span>
+        <span class="pill">🧠 Aprendizaje más significativo</span>
+        <span class="pill">📊 Evaluación clara por competencias</span>
+        <span class="pill">🤝 Trabajo cooperativo real</span>
+      </aside>
+    </section>
+
+    <section id="programas">
+      <h2>Programas formativos</h2>
+      <p class="section-intro">Elige la modalidad que mejor encaje con tu etapa educativa, tiempo disponible y nivel de experiencia en gamificación.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>Iniciación a la gamificación</h3>
+          <p>Para equipos que empiezan desde cero: fundamentos, mecánicas, dinámicas y prototipo de proyecto aplicable al aula.</p>
+        </article>
+        <article class="card">
+          <h3>Diseño de proyecto completo</h3>
+          <p>Creación guiada de una secuencia gamificada trimestral con narrativa, misiones, insignias y rúbricas.</p>
+        </article>
+        <article class="card">
+          <h3>Mentoría para centros</h3>
+          <p>Acompañamiento durante la implantación para ajustar estrategias, resolver bloqueos y medir impacto.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="metodo">
+      <h2>Método PALADAM</h2>
+      <p class="section-intro">Un proceso claro para pasar de la idea a la implementación sin perder foco pedagógico.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>1. Diagnóstico</h3>
+          <p>Analizamos contexto, necesidades del claustro y objetivos de aprendizaje prioritarios.</p>
+        </article>
+        <article class="card">
+          <h3>2. Co-diseño</h3>
+          <p>Definimos narrativa, retos, sistema de progreso y evidencias de evaluación.</p>
+        </article>
+        <article class="card">
+          <h3>3. Implementación</h3>
+          <p>Aplicamos el proyecto en el aula con seguimiento y mejora continua basada en datos.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="precios">
+      <h2>Planes y precios orientativos</h2>
+      <p class="section-intro">Presupuestos adaptables según número de docentes, horas y formato (online/presencial).</p>
+      <div class="pricing">
+        <article class="price-card">
+          <h3>Starter</h3>
+          <p class="price">390€</p>
+          <ul>
+            <li>Taller de 4h</li>
+            <li>Materiales base</li>
+            <li>Plantilla de misión</li>
+          </ul>
+        </article>
+        <article class="price-card featured">
+          <h3>Centro Activo</h3>
+          <p class="price">1.190€</p>
+          <ul>
+            <li>12h de formación</li>
+            <li>Proyecto trimestral guiado</li>
+            <li>2 sesiones de mentoría</li>
+          </ul>
+        </article>
+        <article class="price-card">
+          <h3>Transformación anual</h3>
+          <p class="price">2.750€</p>
+          <ul>
+            <li>Plan anual de centro</li>
+            <li>Mentoría mensual</li>
+            <li>Informe de impacto</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact" id="contacto">
+      <div>
+        <h2 style="margin-bottom: 8px;">¿Quieres llevarlo a tu claustro?</h2>
+        <p style="margin: 0; color: var(--muted);">Cuéntanos tu etapa educativa y número de docentes. Te enviaremos una propuesta personalizada en 24-48h.</p>
+      </div>
+      <a class="btn btn-primary" href="mailto:hola@paladam.com">Escribir a hola@paladam.com</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> PALADAM · Formación docente en gamificación educativa.</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
